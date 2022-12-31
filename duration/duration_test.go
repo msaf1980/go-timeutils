@@ -38,6 +38,18 @@ func TestString(t *testing.T) {
 			d:    12*time.Hour + 31*time.Minute + 10*time.Nanosecond,
 			want: "12h31m0.00000001s",
 		},
+		{
+			d:    10 * time.Nanosecond,
+			want: "10ns",
+		},
+		{
+			d:    2*time.Microsecond + 10*time.Nanosecond,
+			want: "2.01µs",
+		},
+		{
+			d:    4*time.Millisecond + 2*time.Microsecond + 10*time.Nanosecond,
+			want: "4.00201ms",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.d.String(), func(t *testing.T) {
