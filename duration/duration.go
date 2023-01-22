@@ -31,6 +31,15 @@ func fmtSub(buf []byte, v int64, shift int64) []byte {
 	return buf
 }
 
+// MustParse like time.ParseDuration, but panic on error
+func MustParse(s string) time.Duration {
+	if d, err := time.ParseDuration(s); err == nil {
+		return d
+	} else {
+		panic(err)
+	}
+}
+
 // String returns a string representing the duration in the form "72h3m0.5s".
 // Zero units are omitted. As a special case, durations less than one
 // second format use a smaller unit (milli-, micro-, or nanoseconds) to ensure
